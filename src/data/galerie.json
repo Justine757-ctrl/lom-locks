@@ -1,0 +1,68 @@
+[
+  {
+    "id": "photo-1",
+    "title": "Locks métissées curly bicolores",
+    "serviceCategory": "locks-metisses-curly",
+    "serviceName": "Locks métissés curly",
+    "mediaType": "image",
+    "src": "/media/locks-curly-1.jpg",
+    "alt": "Locks métissées bicolores noir et cuivre à effet curly réalisées par LoméLocks à Lomé",
+    "featured": true,
+    "description": "Création bicolore noir & cuivre cuivré lumineux. Boucles définies, légèreté absolue et confort au quotidien."
+  },
+  {
+    "id": "photo-2",
+    "title": "Retwist et soin des racines au naturel",
+    "serviceCategory": "retwist-resserrage",
+    "serviceName": "Retwist / Resserrage",
+    "mediaType": "placeholder",
+    "src": "",
+    "alt": "Retwist racines nettes LoméLocks",
+    "featured": true,
+    "description": "Reprise propre et aérée des racines sans résidus ni tensions excessives."
+  },
+  {
+    "id": "photo-3",
+    "title": "Départ de locks soigné",
+    "serviceCategory": "depart-locks",
+    "serviceName": "Départ de locks",
+    "mediaType": "placeholder",
+    "src": "",
+    "alt": "Départ de locks aux tracés harmonieux",
+    "featured": true,
+    "description": "Séparations géométriques respectueuses de l'implantation naturelle du cuir chevelu."
+  },
+  {
+    "id": "photo-4",
+    "title": "Pose de faux locks protectrices",
+    "serviceCategory": "faux-locks",
+    "serviceName": "Faux locks",
+    "mediaType": "placeholder",
+    "src": "",
+    "alt": "Pose de faux locks légères et soignées",
+    "featured": true,
+    "description": "Mèches préparées à l'avance pour une pose rapide et un résultat élégant."
+  },
+  {
+    "id": "photo-5",
+    "title": "Coiffure événementielle sur locks",
+    "serviceCategory": "coiffure",
+    "serviceName": "Coiffure sur locks",
+    "mediaType": "placeholder",
+    "src": "",
+    "alt": "Chignon chic sur locks pour cérémonie à Lomé",
+    "featured": false,
+    "description": "Chignon structuré et mise en valeur dorée pour mariages et cérémonies."
+  },
+  {
+    "id": "photo-6",
+    "title": "Locks texturées style « tismey »",
+    "serviceCategory": "locks-tismey",
+    "serviceName": "Locks « tismey »",
+    "mediaType": "placeholder",
+    "src": "",
+    "alt": "Locks style tismey raffiné",
+    "featured": false,
+    "description": "Finitions signatures souples avec un tombé fluide et volumineux."
+  }
+]

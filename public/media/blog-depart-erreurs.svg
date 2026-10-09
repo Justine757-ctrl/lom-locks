@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <linearGradient id="bgErr" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2D170F"/>
+      <stop offset="50%" stop-color="#432619"/>
+      <stop offset="100%" stop-color="#1C0E09"/>
+    </linearGradient>
+    <linearGradient id="goldErr" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F2DF99"/>
+      <stop offset="50%" stop-color="#C9A24B"/>
+      <stop offset="100%" stop-color="#8E6B27"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bgErr)"/>
+
+  <!-- Tracés géométriques de séparation de locks -->
+  <g stroke="rgba(201, 162, 75, 0.25)" stroke-width="1.5" fill="none">
+    <path d="M500 80 L580 180 L500 280 L420 180 Z"/>
+    <path d="M580 180 L660 280 L580 380 L500 280 Z"/>
+    <path d="M660 80 L740 180 L660 280 L580 180 Z"/>
+    <circle cx="580" cy="180" r="8" fill="#C9A24B"/>
+    <circle cx="500" cy="280" r="6" fill="#F2DF99"/>
+    <circle cx="660" cy="280" r="6" fill="#F2DF99"/>
+  </g>
+
+  <!-- Badge Catégorie -->
+  <rect x="60" y="60" width="180" height="34" rx="17" fill="rgba(201, 162, 75, 0.18)" stroke="#C9A24B" stroke-width="1"/>
+  <text x="150" y="82" fill="#EEDDA2" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" font-weight="600" text-anchor="middle">Conseils d'entretien</text>
+
+  <!-- Titre -->
+  <text x="60" y="160" fill="#FBF8F3" font-family="'Playfair Display', Georgia, serif" font-size="40" font-weight="700">
+    <tspan x="60" dy="0">5 erreurs à éviter</tspan>
+    <tspan x="60" dy="48" fill="url(#goldErr)">au départ de vos locks</tspan>
+  </text>
+  <text x="60" y="270" fill="#DAB29D" font-family="'Plus Jakarta Sans', sans-serif" font-size="18" font-weight="400">
+    <tspan x="60" dy="0">Tracés trop serrés, accumulation de cire,</tspan>
+    <tspan x="60" dy="28">lavages prématurés : partez sur des bases saines.</tspan>
+  </text>
+
+  <text x="60" y="390" fill="#9E7628" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" font-weight="600" letter-spacing="1">LOMÉLOCKS • GUIDE DE DÉMARRAGE</text>
+</svg>

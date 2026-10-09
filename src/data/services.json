@@ -1,0 +1,183 @@
+{
+  "generalNote": "Prix de base à partir de. Le tarif final dépend de la longueur et de la quantité de locks, et est confirmé sur WhatsApp.",
+  "lengthOptions": [
+    { "id": "courte", "label": "Courte (au-dessus des épaules)", "description": "Longueur de départ ou locks courtes" },
+    { "id": "moyenne", "label": "Moyenne (niveau omoplates / poitrine)", "description": "Longueur intermédiaire standard" },
+    { "id": "longue", "label": "Longue (milieu du dos ou plus)", "description": "Locks longues nécessitant plus de temps" }
+  ],
+  "quantityOptions": [
+    { "id": "epaisse", "label": "Épaisse (~50 à 80 locks)", "description": "Sections larges, entretien plus rapide" },
+    { "id": "standard", "label": "Standard (~80 à 120 locks)", "description": "Densité classique la plus demandée" },
+    { "id": "fine", "label": "Fine (~120+ locks / micro-locks)", "description": "Sections très fines, travail d'orfèvre" }
+  ],
+  "services": [
+    {
+      "id": "depart-locks",
+      "name": "Départ de locks",
+      "startingPrice": 5000,
+      "priceDisplay": "5 000 FCFA",
+      "isQuote": false,
+      "duration": "3h - 5h",
+      "popular": true,
+      "category": "creation",
+      "shortDescription": "Création de vos premières locks soignées et durables, réalisée avec des séparations nettes et respectueuses de votre cuir chevelu.",
+      "lengthSupplements": {
+        "courte": 0,
+        "moyenne": 0,
+        "longue": 0
+      },
+      "quantitySupplements": {
+        "epaisse": 0,
+        "standard": 0,
+        "fine": 0
+      }
+    },
+    {
+      "id": "depart-twist",
+      "name": "Départ en twist",
+      "startingPrice": 3000,
+      "priceDisplay": "3 000 FCFA",
+      "isQuote": false,
+      "duration": "2h - 4h",
+      "popular": false,
+      "category": "creation",
+      "shortDescription": "Démarrage de locks via la technique du twist (vanilles), idéal pour une transition douce et une belle évolution texturée.",
+      "lengthSupplements": {
+        "courte": 0,
+        "moyenne": 0,
+        "longue": 0
+      },
+      "quantitySupplements": {
+        "epaisse": 0,
+        "standard": 0,
+        "fine": 0
+      }
+    },
+    {
+      "id": "retwist-resserrage",
+      "name": "Retwist / Resserrage",
+      "startingPrice": 2000,
+      "priceDisplay": "2 000 FCFA",
+      "isQuote": false,
+      "duration": "1h30 - 3h",
+      "popular": true,
+      "category": "entretien",
+      "shortDescription": "Reprise minutieuse des racines et resserrage des locks pour maintenir une chevelure soignée, nette et en pleine santé.",
+      "lengthSupplements": {
+        "courte": 0,
+        "moyenne": 0,
+        "longue": 0
+      },
+      "quantitySupplements": {
+        "epaisse": 0,
+        "standard": 0,
+        "fine": 0
+      }
+    },
+    {
+      "id": "coiffure",
+      "name": "Coiffure sur locks",
+      "startingPrice": null,
+      "priceDisplay": "Sur devis",
+      "isQuote": true,
+      "duration": "1h - 2h",
+      "popular": false,
+      "category": "styling",
+      "shortDescription": "Stylisations élégantes, chignons raffinés et coiffures créatives pour vos cérémonies, événements ou votre quotidien.",
+      "lengthSupplements": {
+        "courte": 0,
+        "moyenne": 0,
+        "longue": 0
+      },
+      "quantitySupplements": {
+        "epaisse": 0,
+        "standard": 0,
+        "fine": 0
+      }
+    },
+    {
+      "id": "locks-metisses",
+      "name": "Locks métissés",
+      "startingPrice": 12000,
+      "priceDisplay": "12 000 FCFA",
+      "isQuote": false,
+      "duration": "4h - 6h",
+      "popular": false,
+      "category": "specifique",
+      "shortDescription": "Technique sur-mesure adaptée à la texture spécifique des cheveux métissés, pour une prise homogène sans altérer la fibre.",
+      "lengthSupplements": {
+        "courte": 0,
+        "moyenne": 0,
+        "longue": 0
+      },
+      "quantitySupplements": {
+        "epaisse": 0,
+        "standard": 0,
+        "fine": 0
+      }
+    },
+    {
+      "id": "locks-metisses-curly",
+      "name": "Locks métissés curly",
+      "startingPrice": 14000,
+      "priceDisplay": "14 000 FCFA",
+      "isQuote": false,
+      "duration": "4h - 7h",
+      "popular": true,
+      "category": "specifique",
+      "shortDescription": "Pose et création de locks texturées avec pointes ou longueurs ondulées et bouclées pour un rendu aérien et glamour.",
+      "lengthSupplements": {
+        "courte": 0,
+        "moyenne": 0,
+        "longue": 0
+      },
+      "quantitySupplements": {
+        "epaisse": 0,
+        "standard": 0,
+        "fine": 0
+      }
+    },
+    {
+      "id": "locks-tismey",
+      "name": "Locks « tismey »",
+      "startingPrice": 17000,
+      "priceDisplay": "17 000 FCFA",
+      "isQuote": false,
+      "duration": "5h - 8h",
+      "popular": false,
+      "category": "specifique",
+      "shortDescription": "Style distinctif et signature alliant finesse, légèreté et finitions artisanales haut de gamme pour un tombé remarquable.",
+      "lengthSupplements": {
+        "courte": 0,
+        "moyenne": 0,
+        "longue": 0
+      },
+      "quantitySupplements": {
+        "epaisse": 0,
+        "standard": 0,
+        "fine": 0
+      }
+    },
+    {
+      "id": "faux-locks",
+      "name": "Faux locks",
+      "startingPrice": 4000,
+      "priceDisplay": "4 000 FCFA",
+      "isQuote": false,
+      "duration": "3h - 6h",
+      "popular": true,
+      "category": "protectrice",
+      "shortDescription": "Pose protectrice de faux locks soignées et confectionnées à l'avance, pour changer de style immédiatement sans engagement.",
+      "lengthSupplements": {
+        "courte": 0,
+        "moyenne": 0,
+        "longue": 0
+      },
+      "quantitySupplements": {
+        "epaisse": 0,
+        "standard": 0,
+        "fine": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,316 @@
+---
+import servicesData from '../data/services.json';
+import config from '../data/config.json';
+
+interface Props {
+  selectedServiceId?: string;
+}
+
+const { selectedServiceId = '' } = Astro.props;
+const { services, lengthOptions, quantityOptions } = servicesData;
+---
+
+<div id="formulaire" class="bg-white rounded-3xl p-6 sm:p-10 shadow-doux border border-chocolat-100 relative overflow-hidden">
+  <!-- Accent doré décoratif en haut -->
+  <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-dore-300 via-dore to-chocolat-500"></div>
+
+  <div class="mb-8">
+    <span class="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wider text-dore-700 bg-dore-50 rounded-full border border-dore-200 mb-2">
+      Réservation Directe Sans Inscription
+    </span>
+    <h2 class="text-2xl sm:text-3xl font-serif font-bold text-chocolat-950">
+      Demande de Rendez-vous
+    </h2>
+    <p class="text-sm text-chocolat-700 mt-2">
+      Remplissez ce formulaire pour générer votre demande complète. Vos choix seront immédiatement transmis sur WhatsApp pour confirmation et blocage de votre créneau.
+    </p>
+  </div>
+
+  <!-- Rappel des règles d'acompte et d'organisation -->
+  <div class="mb-8 bg-fond-creme/60 rounded-2xl p-4 sm:p-5 border border-chocolat-200/70 text-xs sm:text-sm text-chocolat-800 space-y-2">
+    <div class="flex items-start gap-2.5">
+      <span class="text-dore-600 font-bold text-base leading-none">✓</span>
+      <p>
+        <strong>Acompte de 50 % obligatoire :</strong> à verser <strong>4 jours avant la prestation</strong> (via TMoney ou Flooz) pour permettre la confection des tiges et des locks. Le solde est réglé le jour J.
+      </p>
+    </div>
+    <div class="flex items-start gap-2.5">
+      <span class="text-dore-600 font-bold text-base leading-none">✓</span>
+      <p>
+        <strong>Lieu :</strong> À votre domicile ou chez la prestataire, dans tout Lomé. Frais de déplacement de <strong>2 000 FCFA</strong> au-delà de la zone standard.
+      </p>
+    </div>
+    <div class="flex items-start gap-2.5">
+      <span class="text-dore-600 font-bold text-base leading-none">✓</span>
+      <p>
+        <strong>Délai :</strong> Les rendez-vous s'ouvrent <strong>au moins 5 jours à l'avance</strong> (départs très tôt le matin recommandés, créneaux étendus le week-end).
+      </p>
+    </div>
+  </div>
+
+  <!-- Formulaire interactif -->
+  <form id="reservation-form" class="space-y-6" novalidate>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      
+      <!-- Nom complet -->
+      <div>
+        <label for="client-nom" class="block text-xs font-semibold text-chocolat-900 uppercase tracking-wider mb-1.5">
+          Votre Nom Complet <span class="text-red-500">*</span>
+        </label>
+        <input
+          type="text"
+          id="client-nom"
+          name="nom"
+          required
+          placeholder="Ex : Akossiwa Mensah"
+          class="w-full px-4 py-3 rounded-xl border border-chocolat-200 bg-fond/50 text-chocolat-950 placeholder-chocolat-400 focus:outline-none focus:ring-2 focus:ring-dore focus:border-transparent text-sm transition-all"
+        />
+        <p class="error-msg text-xs text-red-600 mt-1 hidden" id="err-nom">Veuillez indiquer votre nom.</p>
+      </div>
+
+      <!-- Téléphone / WhatsApp -->
+      <div>
+        <label for="client-telephone" class="block text-xs font-semibold text-chocolat-900 uppercase tracking-wider mb-1.5">
+          Numéro WhatsApp <span class="text-red-500">*</span>
+        </label>
+        <input
+          type="tel"
+          id="client-telephone"
+          name="telephone"
+          required
+          placeholder="Ex : +228 90 00 00 00"
+          class="w-full px-4 py-3 rounded-xl border border-chocolat-200 bg-fond/50 text-chocolat-950 placeholder-chocolat-400 focus:outline-none focus:ring-2 focus:ring-dore focus:border-transparent text-sm transition-all"
+        />
+        <p class="error-msg text-xs text-red-600 mt-1 hidden" id="err-telephone">Veuillez entrer un numéro de téléphone valide.</p>
+      </div>
+
+      <!-- Quartier de Lomé -->
+      <div>
+        <label for="client-quartier" class="block text-xs font-semibold text-chocolat-900 uppercase tracking-wider mb-1.5">
+          Quartier à Lomé <span class="text-red-500">*</span>
+        </label>
+        <input
+          type="text"
+          id="client-quartier"
+          name="quartier"
+          required
+          placeholder="Ex : Agoè-Nyivé, Tokoin, Bè, Hedzranawoé, Totsi..."
+          class="w-full px-4 py-3 rounded-xl border border-chocolat-200 bg-fond/50 text-chocolat-950 placeholder-chocolat-400 focus:outline-none focus:ring-2 focus:ring-dore focus:border-transparent text-sm transition-all"
+        />
+        <p class="error-msg text-xs text-red-600 mt-1 hidden" id="err-quartier">Veuillez préciser votre quartier à Lomé.</p>
+      </div>
+
+      <!-- Choix du Lieu -->
+      <div>
+        <label for="client-lieu" class="block text-xs font-semibold text-chocolat-900 uppercase tracking-wider mb-1.5">
+          Lieu de la prestation <span class="text-red-500">*</span>
+        </label>
+        <select
+          id="client-lieu"
+          name="lieu"
+          required
+          class="w-full px-4 py-3 rounded-xl border border-chocolat-200 bg-fond/50 text-chocolat-950 focus:outline-none focus:ring-2 focus:ring-dore focus:border-transparent text-sm transition-all"
+        >
+          <option value="À mon domicile (Lomé)">À mon domicile (partout à Lomé)</option>
+          <option value="Chez la prestataire">Chez la prestataire à Lomé</option>
+        </select>
+      </div>
+
+      <!-- Prestation -->
+      <div class="sm:col-span-2">
+        <label for="client-prestation" class="block text-xs font-semibold text-chocolat-900 uppercase tracking-wider mb-1.5">
+          Prestation souhaitée <span class="text-red-500">*</span>
+        </label>
+        <select
+          id="client-prestation"
+          name="prestation"
+          required
+          class="w-full px-4 py-3 rounded-xl border border-chocolat-200 bg-fond/50 text-chocolat-950 focus:outline-none focus:ring-2 focus:ring-dore focus:border-transparent text-sm transition-all"
+        >
+          <option value="" disabled selected={!selectedServiceId}>Choisissez votre prestation...</option>
+          {services.map((srv) => (
+            <option value={srv.name} selected={srv.id === selectedServiceId}>
+              {srv.name} — {srv.priceDisplay}
+            </option>
+          ))}
+        </select>
+        <p class="error-msg text-xs text-red-600 mt-1 hidden" id="err-prestation">Veuillez sélectionner une prestation.</p>
+      </div>
+
+      <!-- Longueur approximative -->
+      <div>
+        <label for="client-longueur" class="block text-xs font-semibold text-chocolat-900 uppercase tracking-wider mb-1.5">
+          Longueur approximative <span class="text-red-500">*</span>
+        </label>
+        <select
+          id="client-longueur"
+          name="longueur"
+          required
+          class="w-full px-4 py-3 rounded-xl border border-chocolat-200 bg-fond/50 text-chocolat-950 focus:outline-none focus:ring-2 focus:ring-dore focus:border-transparent text-sm transition-all"
+        >
+          {lengthOptions.map((opt) => (
+            <option value={opt.label}>{opt.label}</option>
+          ))}
+        </select>
+      </div>
+
+      <!-- Quantité approximative -->
+      <div>
+        <label for="client-quantite" class="block text-xs font-semibold text-chocolat-900 uppercase tracking-wider mb-1.5">
+          Quantité / Épaisseur de locks <span class="text-red-500">*</span>
+        </label>
+        <select
+          id="client-quantite"
+          name="quantite"
+          required
+          class="w-full px-4 py-3 rounded-xl border border-chocolat-200 bg-fond/50 text-chocolat-950 focus:outline-none focus:ring-2 focus:ring-dore focus:border-transparent text-sm transition-all"
+        >
+          {quantityOptions.map((opt) => (
+            <option value={opt.label}>{opt.label}</option>
+          ))}
+        </select>
+      </div>
+
+      <!-- Date souhaitée (min 5 jours après aujourd'hui) -->
+      <div class="sm:col-span-2">
+        <label for="client-date" class="block text-xs font-semibold text-chocolat-900 uppercase tracking-wider mb-1.5">
+          Date souhaitée <span class="text-red-500">*</span> 
+          <span class="normal-case font-normal text-chocolat-600 text-xs">(Minimum 5 jours d'avance pour préparer l'acompte de 4 jours)</span>
+        </label>
+        <input
+          type="date"
+          id="client-date"
+          name="date"
+          required
+          class="w-full px-4 py-3 rounded-xl border border-chocolat-200 bg-fond/50 text-chocolat-950 focus:outline-none focus:ring-2 focus:ring-dore focus:border-transparent text-sm transition-all"
+        />
+        <p class="error-msg text-xs text-red-600 mt-1 hidden" id="err-date">Veuillez choisir une date située au moins 5 jours à l'avance.</p>
+      </div>
+
+      <!-- Message optionnel -->
+      <div class="sm:col-span-2">
+        <label for="client-message" class="block text-xs font-semibold text-chocolat-900 uppercase tracking-wider mb-1.5">
+          Précisions particulières ou questions (optionnel)
+        </label>
+        <textarea
+          id="client-message"
+          name="message"
+          rows="3"
+          placeholder="Ex : Photos de mes cheveux disponibles, préférence pour 07h00 du matin, couleur souhaitée..."
+          class="w-full px-4 py-3 rounded-xl border border-chocolat-200 bg-fond/50 text-chocolat-950 placeholder-chocolat-400 focus:outline-none focus:ring-2 focus:ring-dore focus:border-transparent text-sm transition-all"
+        ></textarea>
+      </div>
+
+    </div>
+
+    <!-- Bouton d'action WhatsApp -->
+    <div class="pt-4">
+      <button
+        type="submit"
+        id="submit-booking-btn"
+        class="w-full py-4 px-6 rounded-2xl font-bold text-base text-chocolat-950 bg-gradient-to-r from-dore-300 via-dore to-dore-600 shadow-dore hover:shadow-dore-lg hover:brightness-105 active:scale-[0.99] transition-all flex items-center justify-center gap-3 cursor-pointer"
+      >
+        <svg class="w-6 h-6 fill-current text-chocolat-950" viewBox="0 0 24 24">
+          <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.699c.969.54 1.772.813 2.791.814 3.179 0 5.766-2.587 5.767-5.766.002-3.181-2.584-5.766-5.767-5.766zm3.374 8.167c-.145.407-.745.748-1.026.795-.275.045-.632.067-1.032-.061-.258-.083-.585-.192-.999-.371-1.745-.757-2.879-2.529-2.967-2.646-.087-.117-.714-.949-.714-1.811 0-.862.451-1.286.611-1.46.16-.174.349-.218.465-.218.116 0 .233.001.334.006.107.005.25-.041.391.298.145.349.494 1.206.538 1.293.044.087.073.189.015.305-.058.117-.087.189-.174.291-.087.102-.184.227-.263.305-.088.087-.18.182-.077.359.102.174.453.748.972 1.211.668.595 1.232.78 1.406.867.175.087.276.073.378-.044.102-.116.437-.509.553-.683.117-.175.233-.146.393-.088.16.058 1.018.48 1.193.567.175.088.291.131.334.204.044.073.044.422-.101.829z"/>
+        </svg>
+        <span>Envoyer ma demande sur WhatsApp (+228 91 29 59 50)</span>
+      </button>
+      <p class="text-center text-xs text-chocolat-500 mt-3">
+        🔒 Vos coordonnées sont uniquement utilisées pour l'échange de réservation directe sur WhatsApp. Aucun serveur ne stocke vos données.
+      </p>
+    </div>
+  </form>
+</div>
+
+<script>
+  // Calcul dynamique de la date minimale (J + 5)
+  const dateInput = document.getElementById('client-date') as HTMLInputElement | null;
+  if (dateInput) {
+    const today = new Date();
+    today.setDate(today.getDate() + 5);
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    const minDateStr = `${yyyy}-${mm}-${dd}`;
+    dateInput.min = minDateStr;
+    dateInput.value = minDateStr;
+  }
+
+  // Gestion de la soumission du formulaire et validation en français
+  const form = document.getElementById('reservation-form') as HTMLFormElement | null;
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      let hasError = false;
+
+      const nom = (document.getElementById('client-nom') as HTMLInputElement).value.trim();
+      const telephone = (document.getElementById('client-telephone') as HTMLInputElement).value.trim();
+      const quartier = (document.getElementById('client-quartier') as HTMLInputElement).value.trim();
+      const lieu = (document.getElementById('client-lieu') as HTMLSelectElement).value;
+      const prestation = (document.getElementById('client-prestation') as HTMLSelectElement).value;
+      const longueur = (document.getElementById('client-longueur') as HTMLSelectElement).value;
+      const quantite = (document.getElementById('client-quantite') as HTMLSelectElement).value;
+      const date = (document.getElementById('client-date') as HTMLInputElement).value;
+      const message = (document.getElementById('client-message') as HTMLTextAreaElement).value.trim();
+
+      // Reset error messages
+      document.querySelectorAll('.error-msg').forEach((el) => el.classList.add('hidden'));
+
+      if (!nom) {
+        document.getElementById('err-nom')?.classList.remove('hidden');
+        hasError = true;
+      }
+
+      if (!telephone || telephone.length < 8) {
+        document.getElementById('err-telephone')?.classList.remove('hidden');
+        hasError = true;
+      }
+
+      if (!quartier) {
+        document.getElementById('err-quartier')?.classList.remove('hidden');
+        hasError = true;
+      }
+
+      if (!prestation) {
+        document.getElementById('err-prestation')?.classList.remove('hidden');
+        hasError = true;
+      }
+
+      if (!date) {
+        document.getElementById('err-date')?.classList.remove('hidden');
+        hasError = true;
+      }
+
+      if (hasError) {
+        const firstError = document.querySelector('.error-msg:not(.hidden)');
+        firstError?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      // Construction du message WhatsApp pré-formaté
+      const formattedDate = date ? date.split('-').reverse().join('/') : date;
+
+      const waText = 
+`Bonjour LoméLocks ! 🌿
+Je souhaite faire une réservation pour une prestation de locks :
+
+👤 *Nom :* ${nom}
+📞 *Téléphone :* ${telephone}
+📍 *Quartier à Lomé :* ${quartier}
+🏠 *Lieu :* ${lieu}
+✨ *Prestation :* ${prestation}
+📏 *Longueur approximative :* ${longueur}
+🔢 *Quantité / Densité :* ${quantite}
+📅 *Date souhaitée :* ${formattedDate}
+${message ? `💬 *Précisions :* ${message}\n` : ''}
+J'ai bien noté l'acompte de 50 % à verser 4 jours avant. Pouvez-vous me confirmer le tarif final et la disponibilité ? Merci !`;
+
+      const encodedText = encodeURIComponent(waText);
+      const whatsappUrl = `https://wa.me/22891295950?text=${encodedText}`;
+
+      // Ouverture immédiate de WhatsApp
+      window.open(whatsappUrl, '_blank');
+    });
+  }
+</script>

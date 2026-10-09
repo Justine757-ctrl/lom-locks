@@ -1,0 +1,43 @@
+{
+  "siteName": "LoméLocks",
+  "tagline": "Vos locks, sublimées au naturel.",
+  "parentBrand": "Mobile Braiding by Justine",
+  "parentBrandMention": "Un service de Mobile Braiding by Justine",
+  "description": "Service haut de gamme de création, entretien et coiffure de locks à domicile à Lomé (Togo) ou chez la prestataire. Soin 100% naturel, respect du cheveu et finitions soignées.",
+  "phone": "+228 91 29 59 50",
+  "whatsappNumber": "22891295950",
+  "email": "contact@lomelocks.com",
+  "location": "Lomé, Togo",
+  "serviceZone": "Tout Lomé (à domicile ou chez la prestataire)",
+  "standardZone": "Zone standard : centre et communes urbaines de Lomé. Au-delà : 2 000 FCFA de frais de déplacement à la charge de la cliente.",
+  "travelFee": 2000,
+  "travelFeeCurrency": "FCFA",
+  "depositPercent": 50,
+  "depositDaysNotice": 4,
+  "minBookingDaysAhead": 5,
+  "paymentMethods": [
+    {
+      "name": "TMoney",
+      "instruction": "Numéro TMoney : +228 91 29 59 50 [À confirmer par la prestataire lors de l'échange WhatsApp]"
+    },
+    {
+      "name": "Flooz (Moov Money)",
+      "instruction": "Numéro Flooz : +228 XX XX XX XX [À préciser lors de la confirmation]"
+    },
+    {
+      "name": "Espèces",
+      "instruction": "Acceptées pour le règlement du solde le jour de la prestation."
+    }
+  ],
+  "cancellationPolicy": "À préciser lors de la réservation sur WhatsApp. Un report sans frais est généralement possible en prévenant au moins 48 heures à l'avance.",
+  "openingHours": "Lundi au Dimanche de 06h00 à 19h00 (Rendez-vous de préférence très tôt le matin. Plus de disponibilités le week-end).",
+  "targetDomains": [
+    "lomelocks.com",
+    "locksalome.com"
+  ],
+  "socials": {
+    "instagram": "https://instagram.com/lomelocks",
+    "tiktok": "https://tiktok.com/@lomelocks"
+  },
+  "pricingNote": "Prix de base à partir de. Le tarif final dépend de la longueur et de la quantité de locks, et est confirmé sur WhatsApp."
+}

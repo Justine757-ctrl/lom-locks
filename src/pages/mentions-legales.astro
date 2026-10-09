@@ -1,0 +1,51 @@
+---
+import Layout from '../layouts/Layout.astro';
+import config from '../data/config.json';
+---
+
+<Layout
+  title="Mentions Légales — LoméLocks"
+  description="Mentions légales du site LoméLocks, service de locks à domicile à Lomé (Togo), branche de Mobile Braiding by Justine."
+>
+  
+  <section class="py-12 sm:py-16 bg-fond">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <h1 class="text-3xl sm:text-4xl font-serif font-bold text-chocolat-950 mb-8 pb-4 border-b border-chocolat-200">
+        Mentions Légales
+      </h1>
+
+      <div class="prose prose-lg text-chocolat-800 space-y-6">
+        <h2 class="text-xl font-serif font-bold text-chocolat-950">1. Présentation du site</h2>
+        <p>
+          Le présent site internet accessible à l'adresse <strong>lomelocks.netlify.app</strong> (et sur les futurs domaines <strong>{config.targetDomains.join(' / ')}</strong>) est édité par :
+        </p>
+        <ul class="list-disc pl-6 space-y-1 text-sm">
+          <li><strong>Nom commercial :</strong> {config.siteName}</li>
+          <li><strong>Marque de rattachement :</strong> {config.parentBrandMention}</li>
+          <li><strong>Responsable :</strong> Justine</li>
+          <li><strong>Localisation :</strong> Lomé, Togo</li>
+          <li><strong>Téléphone / WhatsApp :</strong> {config.phone}</li>
+          <li><strong>Email :</strong> {config.email}</li>
+        </ul>
+
+        <h2 class="text-xl font-serif font-bold text-chocolat-950">2. Hébergement du site</h2>
+        <p class="text-sm">
+          Le site est hébergé de façon 100 % statique sur la plateforme Netlify Inc. (ou Cloudflare / GitHub Pages). Ces prestataires assurent la diffusion sécurisée des pages statiques à travers un réseau mondial de distribution (CDN).
+        </p>
+
+        <h2 class="text-xl font-serif font-bold text-chocolat-950">3. Propriété intellectuelle</h2>
+        <p class="text-sm">
+          Tous les éléments visuels, photographies de réalisations, logo typographique et articles de blog présents sur ce site sont la propriété exclusive de LoméLocks et de Mobile Braiding by Justine. Toute reproduction totale ou partielle sans accord préalable est interdite.
+        </p>
+
+        <h2 class="text-xl font-serif font-bold text-chocolat-950">4. Conditions des prestations</h2>
+        <p class="text-sm">
+          Les tarifs présentés sur le site sont indicatifs (« à partir de »). Le tarif ferme et définitif est arrêté d'un commun accord lors de l'échange WhatsApp selon la longueur des mèches, la quantité de locks et l'adresse précise du rendez-vous à Lomé.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+</Layout>

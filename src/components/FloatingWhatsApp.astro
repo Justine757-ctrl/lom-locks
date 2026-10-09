@@ -1,0 +1,30 @@
+---
+import config from '../data/config.json';
+---
+
+<aside class="fixed bottom-6 right-5 z-40 flex items-center group" aria-label="Contact WhatsApp rapide">
+  <!-- Bulle d'incitation visible sur desktop ou au hover -->
+  <span class="hidden sm:inline-block mr-3 px-3.5 py-1.5 rounded-full bg-chocolat-950 text-dore-200 text-xs font-semibold shadow-xl border border-dore/30 opacity-90 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+    💬 Réserver sur WhatsApp
+  </span>
+
+  <!-- Bouton circulaire flottant -->
+  <a
+    href={`https://wa.me/${config.whatsappNumber}?text=Bonjour%20Lom%C3%A9Locks%2C%20je%20souhaiterais%20des%20informations%20ou%20r%C3%A9server%20une%20prestation.`}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="relative flex items-center justify-center w-14 h-14 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full shadow-2xl transition-all duration-300 transform group-hover:scale-110 active:scale-95 focus:outline-none focus:ring-4 focus:ring-emerald-300"
+    aria-label="Contacter LoméLocks sur WhatsApp"
+  >
+    <!-- Onde d'animation continue -->
+    <span class="absolute -inset-1 rounded-full bg-emerald-400 opacity-40 animate-ping pointer-events-none"></span>
+
+    <!-- Icône WhatsApp officielle SVG -->
+    <svg class="w-8 h-8 fill-current relative z-10" viewBox="0 0 24 24">
+      <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.699c.969.54 1.772.813 2.791.814 3.179 0 5.766-2.587 5.767-5.766.002-3.181-2.584-5.766-5.767-5.766zm3.374 8.167c-.145.407-.745.748-1.026.795-.275.045-.632.067-1.032-.061-.258-.083-.585-.192-.999-.371-1.745-.757-2.879-2.529-2.967-2.646-.087-.117-.714-.949-.714-1.811 0-.862.451-1.286.611-1.46.16-.174.349-.218.465-.218.116 0 .233.001.334.006.107.005.25-.041.391.298.145.349.494 1.206.538 1.293.044.087.073.189.015.305-.058.117-.087.189-.174.291-.087.102-.184.227-.263.305-.088.087-.18.182-.077.359.102.174.453.748.972 1.211.668.595 1.232.78 1.406.867.175.087.276.073.378-.044.102-.116.437-.509.553-.683.117-.175.233-.146.393-.088.16.058 1.018.48 1.193.567.175.088.291.131.334.204.044.073.044.422-.101.829z"/>
+    </svg>
+
+    <!-- Pastille verte en ligne -->
+    <span class="absolute top-1 right-1 w-3.5 h-3.5 bg-green-300 border-2 border-white rounded-full"></span>
+  </a>
+</aside>

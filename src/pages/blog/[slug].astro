@@ -1,0 +1,207 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import config from '../../data/config.json';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const allPosts = await getCollection('blog');
+const relatedPosts = allPosts
+  .filter((p) => p.slug !== post.slug)
+  .slice(0, 2);
+
+const formattedDate = new Date(post.data.date).toLocaleDateString('fr-FR', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+
+// Lien de partage WhatsApp
+const shareUrl = `https://lomelocks.netlify.app/blog/${post.slug}`;
+const shareText = encodeURIComponent(`Regarde cet article sur l'entretien des locks par LoméLocks : "${post.data.title}" 🌿\n${shareUrl}`);
+const whatsappShareUrl = `https://wa.me/?text=${shareText}`;
+---
+
+<Layout
+  title={`${post.data.title} — LoméLocks Blog`}
+  description={post.data.excerpt}
+  image={post.data.cover}
+  type="article"
+>
+  
+  <article class="py-12 sm:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Fil d'Ariane -->
+      <nav class="flex items-center gap-2 text-xs text-chocolat-600 mb-8" aria-label="Fil d'Ariane">
+        <a href="/" class="hover:text-dore-700">Accueil</a>
+        <span>/</span>
+        <a href="/blog" class="hover:text-dore-700">Blog</a>
+        <span>/</span>
+        <span class="text-chocolat-950 font-medium truncate">{post.data.category}</span>
+      </nav>
+
+      <!-- En-tête de l'article -->
+      <header class="space-y-4 text-center sm:text-left mb-10">
+        <div class="inline-flex items-center gap-3">
+          <span class="px-3.5 py-1 rounded-full text-xs font-semibold bg-dore-100 text-dore-800 border border-dore-300">
+            {post.data.category}
+          </span>
+          <span class="text-xs text-chocolat-500">
+            ⏱ {post.data.readingTime} de lecture
+          </span>
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-extrabold text-chocolat-950 leading-tight">
+          {post.data.title}
+        </h1>
+
+        <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-chocolat-100 text-xs text-chocolat-600">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-full bg-chocolat-100 text-chocolat-900 font-bold flex items-center justify-center text-[10px] border border-dore/40">
+              LL
+            </span>
+            <span>Rédigé par <strong class="text-chocolat-900">{post.data.author || 'Justine - LoméLocks'}</strong></span>
+            <span>•</span>
+            <time datetime={post.data.date}>{formattedDate}</time>
+          </div>
+
+          <!-- Bouton Partager sur WhatsApp -->
+          <a
+            href={whatsappShareUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 font-semibold text-xs transition-colors"
+          >
+            <svg class="w-4 h-4 fill-current text-emerald-600" viewBox="0 0 24 24">
+              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.699c.969.54 1.772.813 2.791.814 3.179 0 5.766-2.587 5.767-5.766.002-3.181-2.584-5.766-5.767-5.766zm3.374 8.167c-.145.407-.745.748-1.026.795-.275.045-.632.067-1.032-.061-.258-.083-.585-.192-.999-.371-1.745-.757-2.879-2.529-2.967-2.646-.087-.117-.714-.949-.714-1.811 0-.862.451-1.286.611-1.46.16-.174.349-.218.465-.218.116 0 .233.001.334.006.107.005.25-.041.391.298.145.349.494 1.206.538 1.293.044.087.073.189.015.305-.058.117-.087.189-.174.291-.087.102-.184.227-.263.305-.088.087-.18.182-.077.359.102.174.453.748.972 1.211.668.595 1.232.78 1.406.867.175.087.276.073.378-.044.102-.116.437-.509.553-.683.117-.175.233-.146.393-.088.16.058 1.018.48 1.193.567.175.088.291.131.334.204.044.073.044.422-.101.829z"/>
+            </svg>
+            Partager sur WhatsApp
+          </a>
+        </div>
+      </header>
+
+      <!-- Image de couverture -->
+      <div class="relative rounded-3xl overflow-hidden aspect-[16/9] mb-12 shadow-carte border border-chocolat-100 bg-chocolat-900">
+        <img
+          src={post.data.cover}
+          alt={post.data.title}
+          class="w-full h-full object-cover"
+        />
+      </div>
+
+      <!-- Contenu Markdown Stylisé -->
+      <div class="prose prose-lg max-w-none text-chocolat-800 leading-relaxed font-sans space-y-6">
+        <Content />
+      </div>
+
+      <!-- Bloc Partage & Réseau -->
+      <div class="mt-14 pt-8 border-t border-chocolat-200 flex flex-col sm:flex-row items-center justify-between gap-4 bg-white p-6 rounded-3xl shadow-sm">
+        <div>
+          <h4 class="font-bold text-chocolat-950 text-sm">Cet article vous a été utile ?</h4>
+          <p class="text-xs text-chocolat-600 mt-0.5">Partagez-le avec vos amies locksées à Lomé !</p>
+        </div>
+        <a
+          href={whatsappShareUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow transition-colors"
+        >
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.699c.969.54 1.772.813 2.791.814 3.179 0 5.766-2.587 5.767-5.766.002-3.181-2.584-5.766-5.767-5.766zm3.374 8.167c-.145.407-.745.748-1.026.795-.275.045-.632.067-1.032-.061-.258-.083-.585-.192-.999-.371-1.745-.757-2.879-2.529-2.967-2.646-.087-.117-.714-.949-.714-1.811 0-.862.451-1.286.611-1.46.16-.174.349-.218.465-.218.116 0 .233.001.334.006.107.005.25-.041.391.298.145.349.494 1.206.538 1.293.044.087.073.189.015.305-.058.117-.087.189-.174.291-.087.102-.184.227-.263.305-.088.087-.18.182-.077.359.102.174.453.748.972 1.211.668.595 1.232.78 1.406.867.175.087.276.073.378-.044.102-.116.437-.509.553-.683.117-.175.233-.146.393-.088.16.058 1.018.48 1.193.567.175.088.291.131.334.204.044.073.044.422-.101.829z"/>
+          </svg>
+          Envoyer sur WhatsApp
+        </a>
+      </div>
+
+      <!-- Articles Liés -->
+      {relatedPosts.length > 0 && (
+        <div class="mt-16 pt-12 border-t border-chocolat-200">
+          <h3 class="text-2xl font-serif font-bold text-chocolat-950 mb-8">
+            À lire également sur le blog
+          </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            {relatedPosts.map((related) => (
+              <BlogCard
+                title={related.data.title}
+                slug={related.slug}
+                date={related.data.date}
+                category={related.data.category}
+                cover={related.data.cover}
+                excerpt={related.data.excerpt}
+                readingTime={related.data.readingTime}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
+    </div>
+  </article>
+
+</Layout>
+
+<style is:global>
+  /* Styles personnalisés pour le rendu de contenu Markdown */
+  .prose h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #2A170F;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(201, 162, 75, 0.25);
+    padding-bottom: 0.5rem;
+  }
+  .prose h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #4A2C1D;
+    margin-top: 1.8rem;
+    margin-bottom: 0.75rem;
+  }
+  .prose p {
+    margin-bottom: 1.25rem;
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+  .prose ul, .prose ol {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+  }
+  .prose ul li {
+    list-style-type: disc;
+    margin-bottom: 0.5rem;
+  }
+  .prose ol li {
+    list-style-type: decimal;
+    margin-bottom: 0.5rem;
+  }
+  .prose strong {
+    color: #2A170F;
+    font-weight: 700;
+  }
+  .prose hr {
+    border-color: rgba(74, 44, 29, 0.15);
+    margin: 2.5rem 0;
+  }
+  .prose a {
+    color: #9E7628;
+    text-decoration: underline;
+    font-weight: 600;
+  }
+  .prose a:hover {
+    color: #4A2C1D;
+  }
+</style>

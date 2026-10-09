@@ -1,0 +1,127 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BookingForm from '../components/BookingForm.astro';
+import config from '../data/config.json';
+
+// Récupération d'un éventuel paramètre d'URL pour présélectionner une prestation
+const serviceParam = Astro.url.searchParams.get('prestation') || '';
+---
+
+<Layout
+  title="Contact & Réservation — LoméLocks (+228 91 29 59 50)"
+  description="Réservez votre séance de locks à domicile à Lomé (Togo) ou chez la prestataire. Formulaire rapide avec confirmation instantanée sur WhatsApp."
+>
+  
+  <section class="py-12 sm:py-16 bg-gradient-to-b from-fond via-fond-creme/40 to-fond border-b border-chocolat-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
+      <span class="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider text-dore-700 bg-dore-50 border border-dore-200 mb-3">
+        Échange Direct &amp; Prise de Rendez-vous
+      </span>
+      <h1 class="text-4xl sm:text-5xl font-serif font-extrabold text-chocolat-950">
+        Contact &amp; Réservation
+      </h1>
+      <p class="text-base sm:text-lg text-chocolat-700 mt-4 leading-relaxed">
+        Choisissez votre prestation, indiquez votre quartier à Lomé et votre date souhaitée. Nous confirmons votre rendez-vous directement via WhatsApp.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-fond">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        
+        <!-- Colonne 1 : Coordonnées & Pratique (5 cols) -->
+        <div class="lg:col-span-5 space-y-6">
+          
+          <!-- Carte WhatsApp Directe -->
+          <div class="bg-emerald-900 text-white rounded-3xl p-7 shadow-lg relative overflow-hidden border border-emerald-700">
+            <div class="flex items-center gap-4 mb-4">
+              <div class="w-12 h-12 rounded-2xl bg-emerald-500/30 flex items-center justify-center text-white">
+                <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24">
+                  <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.699c.969.54 1.772.813 2.791.814 3.179 0 5.766-2.587 5.767-5.766.002-3.181-2.584-5.766-5.767-5.766zm3.374 8.167c-.145.407-.745.748-1.026.795-.275.045-.632.067-1.032-.061-.258-.083-.585-.192-.999-.371-1.745-.757-2.879-2.529-2.967-2.646-.087-.117-.714-.949-.714-1.811 0-.862.451-1.286.611-1.46.16-.174.349-.218.465-.218.116 0 .233.001.334.006.107.005.25-.041.391.298.145.349.494 1.206.538 1.293.044.087.073.189.015.305-.058.117-.087.189-.174.291-.087.102-.184.227-.263.305-.088.087-.18.182-.077.359.102.174.453.748.972 1.211.668.595 1.232.78 1.406.867.175.087.276.073.378-.044.102-.116.437-.509.553-.683.117-.175.233-.146.393-.088.16.058 1.018.48 1.193.567.175.088.291.131.334.204.044.073.044.422-.101.829z"/>
+                </svg>
+              </div>
+              <div>
+                <span class="text-xs font-semibold uppercase tracking-wider text-emerald-200">Canal Privilégié</span>
+                <h3 class="text-xl font-bold text-white">WhatsApp Officiel</h3>
+              </div>
+            </div>
+
+            <p class="text-sm text-emerald-100 leading-relaxed mb-6">
+              Pour une question rapide, l'envoi d'une photo de vos cheveux ou une urgence, écrivez-nous directement sur WhatsApp.
+            </p>
+
+            <a
+              href={`https://wa.me/${config.whatsappNumber}?text=Bonjour%20Lom%C3%A9Locks%2C%20je%20souhaiterais%20des%20informations.`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm bg-white text-emerald-950 hover:bg-emerald-50 transition-colors shadow"
+            >
+              <span>Ouvrir WhatsApp (+228 91 29 59 50)</span>
+            </a>
+          </div>
+
+          <!-- Informations Pratiques -->
+          <div class="bg-white rounded-3xl p-7 border border-chocolat-100 shadow-carte space-y-6">
+            
+            <div class="flex items-start gap-3.5">
+              <span class="text-xl">📍</span>
+              <div>
+                <h4 class="text-sm font-bold text-chocolat-950">Zone d'intervention</h4>
+                <p class="text-xs text-chocolat-700 mt-0.5 leading-relaxed">
+                  {config.serviceZone}. {config.standardZone}
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3.5">
+              <span class="text-xl">⏰</span>
+              <div>
+                <h4 class="text-sm font-bold text-chocolat-950">Horaires et disponibilités</h4>
+                <p class="text-xs text-chocolat-700 mt-0.5 leading-relaxed">
+                  {config.openingHours}
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3.5">
+              <span class="text-xl">💰</span>
+              <div>
+                <h4 class="text-sm font-bold text-chocolat-950">Moyens de paiement</h4>
+                <div class="mt-1 flex flex-wrap gap-1.5">
+                  <span class="px-2.5 py-1 rounded bg-fond text-xs font-semibold text-chocolat-900 border border-chocolat-200">TMoney</span>
+                  <span class="px-2.5 py-1 rounded bg-fond text-xs font-semibold text-chocolat-900 border border-chocolat-200">Flooz</span>
+                  <span class="px-2.5 py-1 rounded bg-fond text-xs font-semibold text-chocolat-900 border border-chocolat-200">Espèces</span>
+                </div>
+                <p class="text-[11px] text-chocolat-500 mt-2">
+                  Acompte de 50 % versé 4 jours avant. Solde réglé le jour de la séance.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3.5">
+              <span class="text-xl">👑</span>
+              <div>
+                <h4 class="text-sm font-bold text-chocolat-950">Marque de rattachement</h4>
+                <p class="text-xs text-chocolat-700 mt-0.5 leading-relaxed">
+                  {config.parentBrandMention}.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Colonne 2 : Formulaire Interactif (7 cols) -->
+        <div class="lg:col-span-7">
+          <BookingForm selectedServiceId={serviceParam} />
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+</Layout>

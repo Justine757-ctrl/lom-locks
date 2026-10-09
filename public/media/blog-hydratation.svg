@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <linearGradient id="bgHydra" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#341C10"/>
+      <stop offset="50%" stop-color="#4A2C1D"/>
+      <stop offset="100%" stop-color="#2A170F"/>
+    </linearGradient>
+    <linearGradient id="goldH" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F2DF99"/>
+      <stop offset="50%" stop-color="#C9A24B"/>
+      <stop offset="100%" stop-color="#8E6B27"/>
+    </linearGradient>
+    <radialGradient id="glowH" cx="70%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="rgba(201, 162, 75, 0.25)"/>
+      <stop offset="100%" stop-color="rgba(201, 162, 75, 0)"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bgHydra)"/>
+  <circle cx="560" cy="180" r="260" fill="url(#glowH)"/>
+  
+  <!-- Formes abstraites de gouttes et brume végétale -->
+  <g opacity="0.15">
+    <circle cx="100" cy="100" r="140" fill="none" stroke="#C9A24B" stroke-width="1.5"/>
+    <circle cx="700" cy="350" r="180" fill="none" stroke="#C9A24B" stroke-width="1.5"/>
+  </g>
+
+  <!-- Illustration stylisée : flacon brumisateur et gouttes d'eau dorées -->
+  <g transform="translate(480, 110)">
+    <!-- Goutte centrale -->
+    <path d="M120 40 C120 40 180 130 180 180 C180 220 150 250 120 250 C90 250 60 220 60 180 C60 130 120 40 120 40 Z" fill="none" stroke="url(#goldH)" stroke-width="6"/>
+    <circle cx="120" cy="180" r="18" fill="url(#goldH)"/>
+    <!-- Brume fine -->
+    <circle cx="40" cy="100" r="6" fill="#F2DF99" opacity="0.8"/>
+    <circle cx="190" cy="110" r="5" fill="#F2DF99" opacity="0.6"/>
+    <circle cx="210" cy="190" r="7" fill="#F2DF99" opacity="0.7"/>
+    <circle cx="30" cy="170" r="4" fill="#F2DF99" opacity="0.5"/>
+    <circle cx="140" cy="60" r="3" fill="#F2DF99" opacity="0.9"/>
+  </g>
+
+  <!-- Badges et Titre -->
+  <rect x="60" y="60" width="160" height="34" rx="17" fill="rgba(201, 162, 75, 0.18)" stroke="#C9A24B" stroke-width="1"/>
+  <text x="140" y="82" fill="#EEDDA2" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" font-weight="600" text-anchor="middle">Soins Naturels</text>
+  
+  <text x="60" y="160" fill="#FBF8F3" font-family="'Playfair Display', Georgia, serif" font-size="40" font-weight="700">
+    <tspan x="60" dy="0">Hydrater ses locks</tspan>
+    <tspan x="60" dy="48" fill="url(#goldH)">sans les alourdir</tspan>
+  </text>
+  <text x="60" y="270" fill="#DAB29D" font-family="'Plus Jakarta Sans', sans-serif" font-size="18" font-weight="400">
+    <tspan x="60" dy="0">Les secrets du spray maison et des huiles légères</tspan>
+    <tspan x="60" dy="28">adaptés au climat chaud et côtier de Lomé.</tspan>
+  </text>
+
+  <text x="60" y="390" fill="#9E7628" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" font-weight="600" letter-spacing="1">LOMÉLOCKS • CONSEIL CAPILLAIRE TOGO</text>
+</svg>

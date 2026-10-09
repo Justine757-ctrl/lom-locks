@@ -1,0 +1,186 @@
+---
+import servicesData from '../data/services.json';
+import config from '../data/config.json';
+
+const { services, lengthOptions, quantityOptions } = servicesData;
+---
+
+<div id="estimateur" class="bg-gradient-to-br from-chocolat-900 to-chocolat-950 text-white rounded-3xl p-6 sm:p-10 shadow-xl border border-dore/40 relative overflow-hidden">
+  <!-- Halo doré en arrière plan -->
+  <div class="absolute -top-24 -right-24 w-80 h-80 bg-dore/10 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="max-w-2xl mx-auto text-center mb-8 relative z-10">
+    <span class="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wider text-dore-300 bg-dore-900/60 rounded-full border border-dore/40 mb-3">
+      Outil Interactif
+    </span>
+    <h2 class="text-2xl sm:text-3xl font-serif font-bold text-fond">
+      Estimez le Tarif de Vos Locks
+    </h2>
+    <p class="text-sm text-chocolat-200 mt-2">
+      Sélectionnez votre prestation, votre longueur et l'épaisseur souhaitée pour obtenir une estimation immédiate.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-5 relative z-10">
+    
+    <!-- Étape 1 : Prestation -->
+    <div class="bg-chocolat-900/70 p-4 rounded-2xl border border-chocolat-700/60">
+      <label for="calc-service" class="block text-xs font-semibold text-dore uppercase tracking-wider mb-2">
+        1. Choisissez la prestation
+      </label>
+      <select
+        id="calc-service"
+        class="w-full px-3 py-3 rounded-xl bg-chocolat-950 text-fond text-sm border border-chocolat-600 focus:outline-none focus:ring-2 focus:ring-dore"
+      >
+        {services.map((srv) => (
+          <option
+            value={srv.id}
+            data-price={srv.startingPrice ?? 0}
+            data-isquote={srv.isQuote ? "true" : "false"}
+            data-pricedisplay={srv.priceDisplay}
+            data-name={srv.name}
+            data-supplements-length={JSON.stringify(srv.lengthSupplements || {})}
+            data-supplements-quantity={JSON.stringify(srv.quantitySupplements || {})}
+          >
+            {srv.name} ({srv.priceDisplay})
+          </option>
+        ))}
+      </select>
+    </div>
+
+    <!-- Étape 2 : Longueur -->
+    <div class="bg-chocolat-900/70 p-4 rounded-2xl border border-chocolat-700/60">
+      <label for="calc-length" class="block text-xs font-semibold text-dore uppercase tracking-wider mb-2">
+        2. Longueur estimée
+      </label>
+      <select
+        id="calc-length"
+        class="w-full px-3 py-3 rounded-xl bg-chocolat-950 text-fond text-sm border border-chocolat-600 focus:outline-none focus:ring-2 focus:ring-dore"
+      >
+        {lengthOptions.map((opt) => (
+          <option value={opt.id} data-label={opt.label}>
+            {opt.label}
+          </option>
+        ))}
+      </select>
+    </div>
+
+    <!-- Étape 3 : Quantité -->
+    <div class="bg-chocolat-900/70 p-4 rounded-2xl border border-chocolat-700/60">
+      <label for="calc-quantity" class="block text-xs font-semibold text-dore uppercase tracking-wider mb-2">
+        3. Quantité / Densité
+      </label>
+      <select
+        id="calc-quantity"
+        class="w-full px-3 py-3 rounded-xl bg-chocolat-950 text-fond text-sm border border-chocolat-600 focus:outline-none focus:ring-2 focus:ring-dore"
+      >
+        {quantityOptions.map((opt) => (
+          <option value={opt.id} data-label={opt.label}>
+            {opt.label}
+          </option>
+        ))}
+      </select>
+    </div>
+
+  </div>
+
+  <!-- Résultat du Calcul & CTA WhatsApp -->
+  <div class="mt-8 pt-6 border-t border-chocolat-800 text-center relative z-10 max-w-xl mx-auto">
+    <div class="text-xs text-dore-300 uppercase tracking-widest font-semibold mb-1">
+      Tarif indicatif de base
+    </div>
+    
+    <div id="calc-display-price" class="text-3xl sm:text-4xl font-serif font-extrabold text-dore mb-2">
+      À partir de 5 000 FCFA
+    </div>
+
+    <p class="text-xs text-chocolat-300 max-w-md mx-auto mb-6">
+      {servicesData.generalNote}
+    </p>
+
+    <a
+      id="calc-whatsapp-btn"
+      href={`https://wa.me/${config.whatsappNumber}?text=Bonjour%20Lom%C3%A9Locks%2C%20je%20souhaiterais%20confirmer%20mon%20tarif%20sur%20mesure.`}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl font-bold text-base text-chocolat-950 bg-gradient-to-r from-dore-300 via-dore to-dore-600 shadow-dore hover:shadow-dore-lg hover:brightness-105 transition-all transform hover:-translate-y-0.5 active:translate-y-0 w-full sm:w-auto"
+    >
+      <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+        <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.699c.969.54 1.772.813 2.791.814 3.179 0 5.766-2.587 5.767-5.766.002-3.181-2.584-5.766-5.767-5.766zm3.374 8.167c-.145.407-.745.748-1.026.795-.275.045-.632.067-1.032-.061-.258-.083-.585-.192-.999-.371-1.745-.757-2.879-2.529-2.967-2.646-.087-.117-.714-.949-.714-1.811 0-.862.451-1.286.611-1.46.16-.174.349-.218.465-.218.116 0 .233.001.334.006.107.005.25-.041.391.298.145.349.494 1.206.538 1.293.044.087.073.189.015.305-.058.117-.087.189-.174.291-.087.102-.184.227-.263.305-.088.087-.18.182-.077.359.102.174.453.748.972 1.211.668.595 1.232.78 1.406.867.175.087.276.073.378-.044.102-.116.437-.509.553-.683.117-.175.233-.146.393-.088.16.058 1.018.48 1.193.567.175.088.291.131.334.204.044.073.044.422-.101.829z"/>
+      </svg>
+      <span>Confirmer mon tarif sur WhatsApp</span>
+    </a>
+  </div>
+</div>
+
+<script>
+  function initEstimator() {
+    const serviceSelect = document.getElementById('calc-service') as HTMLSelectElement | null;
+    const lengthSelect = document.getElementById('calc-length') as HTMLSelectElement | null;
+    const quantitySelect = document.getElementById('calc-quantity') as HTMLSelectElement | null;
+    const displayPrice = document.getElementById('calc-display-price');
+    const waBtn = document.getElementById('calc-whatsapp-btn') as HTMLAnchorElement | null;
+
+    if (!serviceSelect || !lengthSelect || !quantitySelect || !displayPrice || !waBtn) return;
+
+    function updatePrice() {
+      const selectedOption = serviceSelect!.selectedOptions[0];
+      const isQuote = selectedOption.dataset.isquote === "true";
+      const basePrice = parseInt(selectedOption.dataset.price || '0', 10);
+      const serviceName = selectedOption.dataset.name || '';
+
+      const lengthOpt = lengthSelect!.selectedOptions[0];
+      const lengthId = lengthSelect!.value;
+      const lengthLabel = lengthOpt.dataset.label || lengthId;
+
+      const quantityOpt = quantitySelect!.selectedOptions[0];
+      const quantityId = quantitySelect!.value;
+      const quantityLabel = quantityOpt.dataset.label || quantityId;
+
+      let lengthSupplements: Record<string, number> = {};
+      let quantitySupplements: Record<string, number> = {};
+
+      try {
+        lengthSupplements = JSON.parse(selectedOption.dataset.supplementsLength || '{}');
+      } catch (e) {}
+
+      try {
+        quantitySupplements = JSON.parse(selectedOption.dataset.supplementsQuantity || '{}');
+      } catch (e) {}
+
+      const suppLength = lengthSupplements[lengthId] || 0;
+      const suppQuantity = quantitySupplements[quantityId] || 0;
+
+      if (isQuote) {
+        displayPrice!.textContent = "Sur devis";
+      } else {
+        const total = basePrice + suppLength + suppQuantity;
+        // Formatage avec séparateur de milliers
+        const formattedTotal = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+        displayPrice!.textContent = `À partir de ${formattedTotal} FCFA`;
+      }
+
+      // Mise à jour du message WhatsApp
+      const waMsg = 
+`Bonjour Justine (LoméLocks) ! ✨
+J'ai utilisé l'estimateur de tarif sur votre site :
+
+• Prestation : ${serviceName}
+• Longueur : ${lengthLabel}
+• Quantité / Densité : ${quantityLabel}
+
+Pouvez-vous me confirmer le tarif exact et vos prochaines disponibilités à Lomé ? Merci !`;
+
+      waBtn!.href = `https://wa.me/22891295950?text=${encodeURIComponent(waMsg)}`;
+    }
+
+    serviceSelect.addEventListener('change', updatePrice);
+    lengthSelect.addEventListener('change', updatePrice);
+    quantitySelect.addEventListener('change', updatePrice);
+
+    updatePrice();
+  }
+
+  // Initialisation immédiate
+  initEstimator();
+</script>

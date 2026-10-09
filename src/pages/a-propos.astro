@@ -1,0 +1,150 @@
+---
+import Layout from '../layouts/Layout.astro';
+import config from '../data/config.json';
+---
+
+<Layout
+  title="À Propos de Justine & LoméLocks — Mobile Braiding by Justine"
+  description="Découvrez l'histoire de LoméLocks, branche spécialisée de Mobile Braiding by Justine. Passion des locks, soins 100% naturels et service à domicile à Lomé."
+>
+  
+  <!-- En-tête -->
+  <section class="py-12 sm:py-16 bg-gradient-to-b from-fond via-fond-creme/40 to-fond border-b border-chocolat-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
+      <span class="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider text-dore-700 bg-dore-50 border border-dore-200 mb-3">
+        Notre Histoire &amp; Vision
+      </span>
+      <h1 class="text-4xl sm:text-5xl font-serif font-extrabold text-chocolat-950">
+        À Propos de LoméLocks
+      </h1>
+      <p class="text-base sm:text-lg text-chocolat-700 mt-4 leading-relaxed font-serif italic">
+        « Vos locks, sublimées au naturel. » — Un savoir-faire artisanal dédié à votre couronne capillaire à Lomé.
+      </p>
+    </div>
+  </section>
+
+  <!-- Corps de la présentation -->
+  <section class="py-16 bg-fond">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      
+      <!-- Présentation croisée Image + Texte -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Portrait / Photo artisanale -->
+        <div class="lg:col-span-5">
+          <div class="relative mx-auto max-w-sm rounded-3xl overflow-hidden shadow-2xl border-2 border-white bg-chocolat-950 aspect-[4/5]">
+            <img
+              src="/media/locks-curly-1.jpg"
+              alt="Justine — Fondatrice de Mobile Braiding by Justine et LoméLocks"
+              class="w-full h-full object-cover"
+            />
+            <div class="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-chocolat-950/85 backdrop-blur-md border border-dore/30 text-white text-center">
+              <span class="text-xs font-bold uppercase tracking-wider text-dore">Justine</span>
+              <p class="text-xs text-sable-200">Spécialiste Locks &amp; Tresses à Lomé</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Récit & Philosophie -->
+        <div class="lg:col-span-7 space-y-6 text-chocolat-800 leading-relaxed text-base">
+          
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-chocolat-100 border border-dore/40 text-xs font-bold text-chocolat-900">
+            <span>✨</span>
+            <span>{config.parentBrandMention}</span>
+          </div>
+
+          <h2 class="text-2xl sm:text-3xl font-serif font-bold text-chocolat-950">
+            La passion du cheveu crépu et métissé sous toutes ses formes
+          </h2>
+
+          <p>
+            Née de l'aventure humaine de <strong>Mobile Braiding by Justine</strong>, la marque <strong>LoméLocks</strong> est née d'un constat simple : à Lomé, trouver un service de locks qui allie à la fois <em>la ponctualité d'une prestation à domicile</em>, <em>le respect absolu de la fibre capillaire</em> et <em>une technique de resserrage sans cires chimiques</em> relevait souvent du parcours du combattant.
+          </p>
+
+          <p>
+            Depuis plusieurs années, j'accompagne femmes et hommes dans leur aventure capillaire. Qu'il s'agisse d'un premier départ de locks en twists, de locks métissées ou d'un retwist régulier, chaque séance est pensée comme un moment de détente, d'écoute et de valorisation de votre beauté naturelle.
+          </p>
+
+          <div class="p-4 rounded-2xl bg-white border border-chocolat-200 text-xs text-chocolat-600 italic">
+            💡 <strong>Note pour la propriétaire :</strong> Ce texte chaleureux est un modèle provisoire. Vous pouvez le personnaliser à tout moment dans <code class="text-chocolat-900 bg-chocolat-100 px-1 py-0.5 rounded font-mono">src/pages/a-propos.astro</code> pour y ajouter vos années d'expérience et votre parcours personnel !
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Nos 3 Piliers d'Engagement -->
+      <div class="pt-8 border-t border-chocolat-200">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider text-dore-700 bg-dore-50 border border-dore-200 mb-2">
+            Notre Charte de Qualité
+          </span>
+          <h2 class="text-3xl font-serif font-bold text-chocolat-950">
+            L'Engagement Naturel LoméLocks
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          <div class="bg-white rounded-3xl p-8 border border-chocolat-100 shadow-carte">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-700 font-bold flex items-center justify-center text-xl mb-6 border border-emerald-200">
+              🌱
+            </div>
+            <h3 class="font-serif font-bold text-lg text-chocolat-950 mb-3">
+              Zéro Résidus Lourds
+            </h3>
+            <p class="text-sm text-chocolat-700 leading-relaxed">
+              Nous bannissons formellement les cires d'abeille industrielles et beurres lourds qui emprisonnent la poussière loméenne. Vos locks restent légères, fraîches et sentent bon au naturel.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-3xl p-8 border border-chocolat-100 shadow-carte">
+            <div class="w-12 h-12 rounded-2xl bg-dore-50 text-dore-700 font-bold flex items-center justify-center text-xl mb-6 border border-dore-200">
+              📐
+            </div>
+            <h3 class="font-serif font-bold text-lg text-chocolat-950 mb-3">
+              Respect du Bulbe &amp; Tracés
+            </h3>
+            <p class="text-sm text-chocolat-700 leading-relaxed">
+              Pas de tractions excessives responsables d'alopécie. Nos séparations sont calibrées pour respecter la densité de vos tempes et assurer des locks solides pour les dix prochaines années.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-3xl p-8 border border-chocolat-100 shadow-carte">
+            <div class="w-12 h-12 rounded-2xl bg-chocolat-100 text-chocolat-800 font-bold flex items-center justify-center text-xl mb-6 border border-dore/40">
+              🤝
+            </div>
+            <h3 class="font-serif font-bold text-lg text-chocolat-950 mb-3">
+              Proximité &amp; Ponctualité
+            </h3>
+            <p class="text-sm text-chocolat-700 leading-relaxed">
+              Nous intervenons à domicile dans tout Lomé à l'heure convenue (dès 06h30 le matin). Vous gagnez un temps précieux et bénéficiez d'une intimité propice au repos.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CTA de fin de page -->
+      <div class="bg-gradient-to-r from-chocolat-900 to-chocolat-950 rounded-3xl p-8 sm:p-12 text-center text-fond shadow-xl border border-dore/30">
+        <h3 class="text-2xl sm:text-3xl font-serif font-bold mb-3 text-fond">
+          Envie d'échanger sur votre chevelure ?
+        </h3>
+        <p class="text-sm sm:text-base text-chocolat-200 max-w-xl mx-auto mb-8">
+          Envoyez-moi un message sur WhatsApp. Je réponds personnellement avec bienveillance à toutes vos questions.
+        </p>
+        <a
+          href={`https://wa.me/${config.whatsappNumber}?text=Bonjour%20Justine%2C%20j%27ai%20d%C3%A9couvert%20votre%20page%20%C3%80%20propos%20et%20j%27aimerais%20des%20conseils%20pour%20mes%20cheveux.`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-3 px-8 py-4 rounded-2xl font-bold text-sm text-chocolat-950 bg-gradient-to-r from-dore-300 via-dore to-dore-600 shadow-dore hover:shadow-dore-lg hover:brightness-105 transition-all"
+        >
+          <span>Discuter avec Justine sur WhatsApp</span>
+          <span>→</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+</Layout>

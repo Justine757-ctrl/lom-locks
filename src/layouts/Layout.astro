@@ -1,0 +1,110 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import config from '../data/config.json';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+  type?: 'website' | 'article';
+}
+
+const {
+  title = `${config.siteName} — ${config.tagline}`,
+  description = config.description,
+  image = "/media/locks-curly-1.jpg",
+  canonical = Astro.url.href,
+  type = 'website'
+} = Astro.props;
+
+const siteUrl = "https://lomelocks.netlify.app";
+const fullImageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`;
+
+// Schéma LocalBusiness JSON-LD pour le SEO local à Lomé
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "HairSalon",
+  "name": "LoméLocks",
+  "legalName": "LoméLocks — Mobile Braiding by Justine",
+  "description": config.description,
+  "url": siteUrl,
+  "telephone": config.phone,
+  "priceRange": "2000 - 20000 XOF",
+  "image": fullImageUrl,
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Lomé",
+    "addressRegion": "Maritime",
+    "addressCountry": "TG"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 6.1375,
+    "longitude": 1.2125
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Lomé"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "06:00",
+      "closes": "19:00"
+    }
+  ],
+  "paymentAccepted": "TMoney, Flooz, Cash"
+};
+---
+
+<!doctype html>
+<html lang="fr" class="h-full scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content="locks Lomé, départ de locks Lomé, retwist Lomé, faux locks Lomé, coiffure locks Togo, locks métissés, Mobile Braiding by Justine" />
+    <meta name="author" content="LoméLocks - Justine" />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={fullImageUrl} />
+    <meta property="og:locale" content="fr_TG" />
+    <meta property="og:site_name" content="LoméLocks" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={fullImageUrl} />
+
+    <!-- Google Fonts Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+  </head>
+  <body class="min-h-full flex flex-col bg-fond text-chocolat-900 font-sans antialiased selection:bg-dore selection:text-chocolat-950">
+    <Header />
+    <main id="contenu-principal" class="flex-grow pt-20">
+      <slot />
+    </main>
+    <Footer />
+    <FloatingWhatsApp />
+  </body>
+</html>

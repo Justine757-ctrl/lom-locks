@@ -1,0 +1,54 @@
+---
+import Layout from '../layouts/Layout.astro';
+import config from '../data/config.json';
+---
+
+<Layout
+  title="Politique de Confidentialité — LoméLocks"
+  description="Politique de protection des données personnelles et de respect de la vie privée sur le site LoméLocks."
+>
+  
+  <section class="py-12 sm:py-16 bg-fond">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <h1 class="text-3xl sm:text-4xl font-serif font-bold text-chocolat-950 mb-8 pb-4 border-b border-chocolat-200">
+        Politique de Confidentialité
+      </h1>
+
+      <div class="prose prose-lg text-chocolat-800 space-y-6 text-sm leading-relaxed">
+        <h2 class="text-xl font-serif font-bold text-chocolat-950">1. Collecte des données personnelles</h2>
+        <p>
+          Dans le cadre de l'utilisation de notre formulaire de réservation, nous recueillons temporairement les informations suivantes renseignées par vos soins :
+        </p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li>Nom et prénom</li>
+          <li>Numéro de téléphone / WhatsApp</li>
+          <li>Quartier de résidence à Lomé</li>
+          <li>Choix de la prestation et date souhaitée</li>
+        </ul>
+
+        <h2 class="text-xl font-serif font-bold text-chocolat-950">2. Aucun stockage sur serveur (Architecture 100% Statique)</h2>
+        <p>
+          Ce site est hébergé sous forme de fichiers statiques sans base de données serveur. Lorsque vous cliquez sur « Envoyer ma demande », vos informations sont traitées localement dans votre propre navigateur afin d'ouvrir directement une discussion WhatsApp pré-remplie avec notre numéro officiel ({config.phone}). Aucune donnée n'est enregistrée dans une base de données en ligne ni revendue à des tiers.
+        </p>
+
+        <h2 class="text-xl font-serif font-bold text-chocolat-950">3. Finalité du traitement</h2>
+        <p>
+          Les données transmises lors de votre échange WhatsApp ont pour unique but de :
+        </p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li>Organiser votre rendez-vous de coiffure ou d'entretien de locks</li>
+          <li>Confirmer l'adresse exacte d'intervention à Lomé</li>
+          <li>Échanger les coordonnées de paiement mobile pour l'acompte (TMoney / Flooz)</li>
+        </ul>
+
+        <h2 class="text-xl font-serif font-bold text-chocolat-950">4. Vos droits</h2>
+        <p>
+          Vous pouvez à tout moment demander la suppression de votre historique de conversation en nous envoyant un simple message sur WhatsApp ou à l'adresse email <strong>{config.email}</strong>.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+</Layout>

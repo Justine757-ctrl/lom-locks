@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <linearGradient id="bgNight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1B0E09"/>
+      <stop offset="50%" stop-color="#2E170E"/>
+      <stop offset="100%" stop-color="#120704"/>
+    </linearGradient>
+    <linearGradient id="goldNight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F2DF99"/>
+      <stop offset="50%" stop-color="#C9A24B"/>
+      <stop offset="100%" stop-color="#8E6B27"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bgNight)"/>
+
+  <!-- Croissant de lune et étoiles dorées -->
+  <g transform="translate(520, 100)">
+    <!-- Lune -->
+    <path d="M120 20 C180 20 230 70 230 130 C230 190 180 240 120 240 C100 240 80 234 65 225 C115 205 150 155 150 100 C150 65 135 35 110 18 C113 19 116 20 120 20 Z" fill="url(#goldNight)"/>
+    <!-- Étoiles scintillantes -->
+    <path d="M40 70 L43 78 L51 81 L43 84 L40 92 L37 84 L29 81 L37 78 Z" fill="#F2DF99"/>
+    <path d="M180 260 L182 265 L187 267 L182 269 L180 274 L178 269 L173 267 L178 265 Z" fill="#F2DF99"/>
+    <path d="M30 170 L32 174 L36 175 L32 177 L30 181 L28 177 L24 175 L28 174 Z" fill="#F2DF99"/>
+  </g>
+
+  <!-- Badge Catégorie -->
+  <rect x="60" y="60" width="160" height="34" rx="17" fill="rgba(201, 162, 75, 0.18)" stroke="#C9A24B" stroke-width="1"/>
+  <text x="140" y="82" fill="#EEDDA2" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" font-weight="600" text-anchor="middle">Routine de nuit</text>
+
+  <!-- Titre -->
+  <text x="60" y="160" fill="#FBF8F3" font-family="'Playfair Display', Georgia, serif" font-size="40" font-weight="700">
+    <tspan x="60" dy="0">Routine de nuit pour</tspan>
+    <tspan x="60" dy="48" fill="url(#goldNight)">des locks protégées</tspan>
+  </text>
+  <text x="60" y="270" fill="#DAB29D" font-family="'Plus Jakarta Sans', sans-serif" font-size="18" font-weight="400">
+    <tspan x="60" dy="0">Bonnet en satin, taie d'oreiller et gestes essentiels</tspan>
+    <tspan x="60" dy="28">pour éviter les peluches et préserver vos longueurs.</tspan>
+  </text>
+
+  <text x="60" y="390" fill="#9E7628" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" font-weight="600" letter-spacing="1">LOMÉLOCKS • PROTECTION NOCTURNE</text>
+</svg>

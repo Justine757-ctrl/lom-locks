@@ -1,0 +1,148 @@
+---
+import galleryData from '../data/galerie.json';
+import config from '../data/config.json';
+
+interface Props {
+  limit?: number;
+  showFilters?: boolean;
+}
+
+const { limit, showFilters = true } = Astro.props;
+const items = limit ? galleryData.slice(0, limit) : galleryData;
+
+const categories = [
+  { id: 'all', label: 'Toutes les créations' },
+  { id: 'locks-metisses-curly', label: 'Locks Métissés Curly' },
+  { id: 'retwist-resserrage', label: 'Retwist & Soin' },
+  { id: 'depart-locks', label: 'Départs' },
+  { id: 'faux-locks', label: 'Faux Locks' },
+  { id: 'coiffure', label: 'Coiffures' },
+];
+---
+
+<div class="gallery-container">
+  
+  {showFilters && (
+    <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10">
+      {categories.map((cat, index) => (
+        <button
+          type="button"
+          data-category={cat.id}
+          class={`gallery-filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 border ${
+            index === 0
+              ? 'bg-chocolat text-fond border-chocolat shadow-sm active-filter'
+              : 'bg-white text-chocolat-800 border-chocolat-200 hover:border-dore hover:text-chocolat-950'
+          }`}
+        >
+          {cat.label}
+        </button>
+      ))}
+    </div>
+  )}
+
+  <!-- Grille des Médias -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" id="gallery-grid">
+    {items.map((item) => (
+      <div
+        class="gallery-item group relative flex flex-col bg-white rounded-3xl overflow-hidden shadow-carte border border-chocolat-100 hover:shadow-doux hover:border-dore/50 transition-all duration-300"
+        data-category={item.serviceCategory}
+      >
+        <!-- Cadre média -->
+        <div class="relative aspect-[4/5] sm:aspect-square w-full overflow-hidden bg-chocolat-900">
+          {item.mediaType === 'image' && item.src ? (
+            <img
+              src={item.src}
+              alt={item.alt}
+              loading="lazy"
+              decoding="async"
+              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+            />
+          ) : (
+            <!-- Emplacement temporaire élégant doré -->
+            <div class="w-full h-full flex flex-col items-center justify-center p-8 text-center bg-gradient-to-br from-chocolat-900 via-chocolat-800 to-chocolat-950 relative overflow-hidden">
+              <!-- Halo doré abstrait -->
+              <div class="absolute inset-0 bg-motif-dore opacity-30"></div>
+              <div class="w-20 h-20 rounded-full border border-dore/40 bg-chocolat-900/80 flex items-center justify-center mb-4 relative z-10 shadow-dore">
+                <svg class="w-10 h-10 text-dore" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+              </div>
+              <span class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-dore-200 bg-dore-900/70 border border-dore/50 relative z-10 mb-2">
+                Photo à venir
+              </span>
+              <p class="text-xs text-sable-200 relative z-10 max-w-[200px]">
+                Nouvelle réalisation bientôt photographiée à Lomé
+              </p>
+            </div>
+          )}
+
+          <!-- Badge Service -->
+          <div class="absolute top-4 left-4 z-10">
+            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-chocolat-950/85 text-dore-200 backdrop-blur-md border border-dore/30">
+              {item.serviceName}
+            </span>
+          </div>
+        </div>
+
+        <!-- Détails de la réalisation -->
+        <div class="p-5 flex-1 flex flex-col justify-between">
+          <div>
+            <h3 class="font-serif font-bold text-base text-chocolat-950 group-hover:text-dore-700 transition-colors">
+              {item.title}
+            </h3>
+            <p class="text-xs text-chocolat-600 mt-1.5 leading-relaxed">
+              {item.description}
+            </p>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-chocolat-100 flex items-center justify-between">
+            <span class="text-[11px] text-chocolat-500 font-medium">Lomé, Togo</span>
+            <a
+              href={`https://wa.me/${config.whatsappNumber}?text=Bonjour%20Lom%C3%A9Locks%2C%20j%27ai%20vu%20la%20r%C3%A9alisation%20%C2%AB%20${encodeURIComponent(item.title)}%20%C2%BB%20et%20je%20souhaiterais%20un%20style%20similaire.`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-xs font-bold text-dore-700 hover:text-dore-800 flex items-center gap-1 group/link"
+            >
+              <span>Demander ce style</span>
+              <span class="transition-transform group-hover/link:translate-x-1">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<script>
+  function initGalleryFilters() {
+    const filterButtons = document.querySelectorAll('.gallery-filter-btn');
+    const items = document.querySelectorAll('.gallery-item');
+
+    filterButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const cat = btn.getAttribute('data-category');
+
+        // Style des boutons
+        filterButtons.forEach((b) => {
+          b.classList.remove('bg-chocolat', 'text-fond', 'border-chocolat', 'active-filter');
+          b.classList.add('bg-white', 'text-chocolat-800', 'border-chocolat-200');
+        });
+
+        btn.classList.add('bg-chocolat', 'text-fond', 'border-chocolat', 'active-filter');
+        btn.classList.remove('bg-white', 'text-chocolat-800', 'border-chocolat-200');
+
+        // Filtrage des éléments
+        items.forEach((item) => {
+          const itemCat = item.getAttribute('data-category');
+          if (cat === 'all' || itemCat === cat) {
+            (item as HTMLElement).style.display = 'flex';
+          } else {
+            (item as HTMLElement).style.display = 'none';
+          }
+        });
+      });
+    });
+  }
+
+  initGalleryFilters();
+</script>

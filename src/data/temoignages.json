@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "name": "[Prénom de la cliente à remplacer]",
+    "location": "Lomé (Quartier Tokoin)",
+    "service": "Locks métissés curly",
+    "rating": 5,
+    "date": "Octobre 2024",
+    "comment": "[À remplacer par le premier avis réel de la propriétaire] — « Service à domicile ponctuel et très professionnel ! Mes locks sont légères, bien fixées et le rendu est naturel. Je recommande sans hésiter. »",
+    "featured": true,
+    "avatar": "CL"
+  },
+  {
+    "id": 2,
+    "name": "Afiwa M.",
+    "location": "Lomé (Agoè-Nyivé)",
+    "service": "Retwist / Resserrage",
+    "rating": 5,
+    "date": "Septembre 2024",
+    "comment": "Un travail d'une propreté exemplaire. Justine a pris le temps d'hydrater mes racines avec des huiles douces sans plaquer de gel lourd. Mes locks respirent enfin !",
+    "featured": true,
+    "avatar": "AM"
+  },
+  {
+    "id": 3,
+    "name": "Koffi D.",
+    "location": "Lomé (Bè-Kpota)",
+    "service": "Départ de locks",
+    "rating": 5,
+    "date": "Août 2024",
+    "comment": "Première fois que je démarre des locks et j'avais beaucoup d'hésitations. Elle m'a rassuré, expliqué toutes les étapes et donné de très bons conseils d'entretien pour le climat de Lomé.",
+    "featured": true,
+    "avatar": "KD"
+  }
+]

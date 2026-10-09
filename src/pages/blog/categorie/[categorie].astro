@@ -1,0 +1,113 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import BlogCard from '../../../components/BlogCard.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const categoryMap: Record<string, string> = {
+    'conseils-entretien': "Conseils d'entretien",
+    'soins-naturels': "Soins naturels",
+    'routine-de-nuit': "Routine de nuit",
+    'faq': "FAQ",
+  };
+
+  const allPosts = await getCollection('blog');
+
+  return Object.entries(categoryMap).map(([slug, name]) => {
+    const filteredPosts = allPosts.filter(
+      (post) => post.data.category.toLowerCase().trim() === name.toLowerCase().trim()
+    ).sort(
+      (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+    );
+
+    return {
+      params: { categorie: slug },
+      props: { categoryName: name, posts: filteredPosts },
+    };
+  });
+}
+
+const { categoryName, posts } = Astro.props;
+
+const categories = [
+  { name: 'Tous les articles', slug: '/blog' },
+  { name: "Conseils d'entretien", slug: '/blog/categorie/conseils-entretien' },
+  { name: 'Soins naturels', slug: '/blog/categorie/soins-naturels' },
+  { name: 'Routine de nuit', slug: '/blog/categorie/routine-de-nuit' },
+  { name: 'FAQ', slug: '/blog/categorie/faq' },
+];
+---
+
+<Layout
+  title={`Articles : ${categoryName} — LoméLocks Blog`}
+  description={`Découvrez nos conseils et astuces d'entretien dans la thématique ${categoryName} pour des locks en pleine santé à Lomé.`}
+>
+  
+  <section class="py-12 sm:py-16 bg-gradient-to-b from-fond via-fond-creme/40 to-fond border-b border-chocolat-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
+      <span class="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider text-dore-700 bg-dore-50 border border-dore-200 mb-3">
+        Catégorie du Blog
+      </span>
+      <h1 class="text-4xl sm:text-5xl font-serif font-extrabold text-chocolat-950">
+        {categoryName}
+      </h1>
+      <p class="text-base text-chocolat-700 mt-4 leading-relaxed">
+        Tous nos guides et recommandations pratiques dédiés à : {categoryName.toLowerCase()}.
+      </p>
+
+      <!-- Onglets Catégories -->
+      <div class="mt-8 flex flex-wrap justify-center gap-2">
+        {categories.map((cat) => {
+          const isCurrent = cat.name.toLowerCase() === categoryName.toLowerCase();
+          return (
+            <a
+              href={cat.slug}
+              class={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all border ${
+                isCurrent
+                  ? 'bg-chocolat text-fond border-chocolat shadow-sm'
+                  : 'bg-white text-chocolat-800 border-chocolat-200 hover:border-dore hover:text-chocolat-950'
+              }`}
+            >
+              {cat.name}
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-fond">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      {posts.length > 0 ? (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {posts.map((post) => (
+            <BlogCard
+              title={post.data.title}
+              slug={post.slug}
+              date={post.data.date}
+              category={post.data.category}
+              cover={post.data.cover}
+              excerpt={post.data.excerpt}
+              readingTime={post.data.readingTime}
+            />
+          ))}
+        </div>
+      ) : (
+        <div class="text-center py-16 bg-white rounded-3xl border border-chocolat-100 p-8 max-w-md mx-auto">
+          <p class="text-chocolat-700 mb-4 text-sm">
+            Aucun article n'a encore été publié dans cette catégorie pour le moment.
+          </p>
+          <a
+            href="/blog"
+            class="inline-block px-5 py-2.5 rounded-full bg-dore text-chocolat-950 text-xs font-bold shadow-sm"
+          >
+            Voir tous les articles
+          </a>
+        </div>
+      )}
+
+    </div>
+  </section>
+
+</Layout>

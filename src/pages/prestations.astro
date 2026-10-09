@@ -1,0 +1,160 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import PriceEstimator from '../components/PriceEstimator.astro';
+import servicesData from '../data/services.json';
+import config from '../data/config.json';
+
+const { services, generalNote } = servicesData;
+---
+
+<Layout
+  title="Prestations & Tarifs — LoméLocks (Locks à Lomé)"
+  description="Découvrez nos tarifs pour le départ de locks (dès 5 000 F), retwist (dès 2 000 F), locks métissés, faux locks et coiffures à Lomé. Estimateur en ligne."
+>
+  
+  <!-- En-tête de page -->
+  <section class="py-12 sm:py-16 bg-gradient-to-b from-fond via-fond-creme/40 to-fond border-b border-chocolat-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
+      <span class="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider text-dore-700 bg-dore-50 border border-dore-200 mb-3">
+        Grille Tarifaire Transparente
+      </span>
+      <h1 class="text-4xl sm:text-5xl font-serif font-extrabold text-chocolat-950">
+        Prestations &amp; Tarifs à Lomé
+      </h1>
+      <p class="text-base sm:text-lg text-chocolat-700 mt-4 leading-relaxed">
+        Chaque chevelure est unique. Nos tarifs sont formulés avec clarté : un prix de base accessible, complété selon votre longueur et votre volume pour un travail toujours soigné.
+      </p>
+
+      <!-- Mention tarifaire obligatoire -->
+      <div class="mt-6 inline-flex items-center gap-2 p-3 sm:px-5 sm:py-2.5 rounded-2xl bg-amber-50 border border-amber-200 text-xs sm:text-sm text-amber-900 font-medium">
+        <span>ℹ️</span>
+        <span>{generalNote}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Grille des 8 Prestations -->
+  <section class="py-16 bg-fond">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        {services.map((srv) => (
+          <ServiceCard
+            id={srv.id}
+            name={srv.name}
+            priceDisplay={srv.priceDisplay}
+            isQuote={srv.isQuote}
+            duration={srv.duration}
+            popular={srv.popular}
+            category={srv.category}
+            shortDescription={srv.shortDescription}
+          />
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Estimateur Interactif de Tarif -->
+  <section class="py-12 sm:py-16 bg-white border-y border-chocolat-100">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <PriceEstimator />
+    </div>
+  </section>
+
+  <!-- Règles de Réservation & Déplacement -->
+  <section class="py-16 sm:py-20 bg-fond">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider text-dore-700 bg-dore-50 border border-dore-200 mb-2">
+          Organisation &amp; Sérénité
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-chocolat-950">
+          Nos Règles de Réservation
+        </h2>
+        <p class="text-sm text-chocolat-700 mt-2">
+          Pour vous garantir un travail irréprochable et préparer vos mèches ou tiges avec le plus grand soin.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Règle 1 : Acompte -->
+        <div class="bg-white rounded-3xl p-7 border border-chocolat-100 shadow-carte">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-10 h-10 rounded-xl bg-dore-100 text-dore-800 font-bold flex items-center justify-center text-sm">
+              50%
+            </span>
+            <h3 class="font-serif font-bold text-lg text-chocolat-950">
+              Acompte de 50 % (4 jours avant)
+            </h3>
+          </div>
+          <p class="text-sm text-chocolat-700 leading-relaxed">
+            Pour permettre la confection des tiges, mèches ou locks à l'avance, un acompte de <strong>50 % du montant</strong> est exigé au moins <strong>4 jours avant la date convenue</strong>. Le solde restant est réglé le jour de la prestation.
+          </p>
+        </div>
+
+        <!-- Règle 2 : Déplacement -->
+        <div class="bg-white rounded-3xl p-7 border border-chocolat-100 shadow-carte">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-10 h-10 rounded-xl bg-chocolat-100 text-chocolat-800 font-bold flex items-center justify-center text-sm">
+              🚗
+            </span>
+            <h3 class="font-serif font-bold text-lg text-chocolat-950">
+              Frais de Déplacement à Lomé
+            </h3>
+          </div>
+          <p class="text-sm text-chocolat-700 leading-relaxed">
+            Intervention à domicile dans tout Lomé (ou possibilité d'accueil chez la prestataire). {config.standardZone}
+          </p>
+        </div>
+
+        <!-- Règle 3 : Horaires et créneaux -->
+        <div class="bg-white rounded-3xl p-7 border border-chocolat-100 shadow-carte">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 font-bold flex items-center justify-center text-sm">
+              🌅
+            </span>
+            <h3 class="font-serif font-bold text-lg text-chocolat-950">
+              Créneaux Matinaux &amp; Week-end
+            </h3>
+          </div>
+          <p class="text-sm text-chocolat-700 leading-relaxed">
+            Pour un travail minutieux sans précipitation, les rendez-vous sont fixés de préférence <strong>très tôt le matin (dès 06h30 - 07h00)</strong>. Davantage de disponibilités sont ouvertes le <strong>samedi et dimanche</strong>.
+          </p>
+        </div>
+
+        <!-- Règle 4 : Moyens de paiement -->
+        <div class="bg-white rounded-3xl p-7 border border-chocolat-100 shadow-carte">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 font-bold flex items-center justify-center text-sm">
+              💳
+            </span>
+            <h3 class="font-serif font-bold text-lg text-chocolat-950">
+              Moyens de Paiement
+            </h3>
+          </div>
+          <p class="text-sm text-chocolat-700 leading-relaxed">
+            Nous acceptons <strong>TMoney</strong> et <strong>Flooz</strong> pour le versement sécurisé de votre acompte. Le solde peut être versé via mobile money ou en espèces le jour même.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- CTA vers réservation -->
+      <div class="mt-12 text-center">
+        <a
+          href="/contact#formulaire"
+          class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl font-bold text-base text-chocolat-950 bg-gradient-to-r from-dore-300 via-dore to-dore-600 shadow-dore hover:shadow-dore-lg hover:brightness-105 transition-all"
+        >
+          <span>Accéder au formulaire de réservation en ligne</span>
+          <span>→</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+</Layout>
